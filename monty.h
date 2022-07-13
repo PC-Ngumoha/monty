@@ -1,6 +1,10 @@
 #ifndef MONTY_H_
 #define MONTY_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -30,5 +34,12 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/* Extern Global Variable: data */
+extern char *data;
+
+/* Function Prototypes */
+void (get_operations(const char *command))(stack_t **, unsigned int)
+char* _strdup(const char* s);
 
 #endif /* MONTY_H_ */
