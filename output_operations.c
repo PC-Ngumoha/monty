@@ -12,10 +12,13 @@ void print_all(stack_t **top, unsigned int line_number)
 	stack_t *curr = *top;
 
 	(void) line_number;
-	while (curr != NULL)
+	if (curr != NULL)
 	{
-		fprintf(stdout, "%d\n", curr->n);
-		curr = curr->prev;
+		while (curr != NULL)
+		{
+			fprintf(stdout, "%d\n", curr->n);
+			curr = curr->prev;
+		}
 	}
 }
 

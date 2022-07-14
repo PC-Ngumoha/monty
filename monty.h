@@ -59,6 +59,7 @@ void free_stack(stack_t *top);
 /* Function Prototypes */
 void (*get_operations(const char *command))(stack_t **, unsigned int);
 void push(stack_t **top, unsigned int line_number);
+void pop(stack_t **top, unsigned int line_number);
 void print_all(stack_t **top, unsigned int line_number);
 void print_top(stack_t **top, unsigned int line_number);
 

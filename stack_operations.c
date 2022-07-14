@@ -41,3 +41,33 @@ void push(stack_t **top, unsigned int line_number)
 		*top = new_node;
 	}
 }
+
+
+/**
+ * pop - removes the top of the stack
+ * @top: top of the stack
+ * @line_number: number of line of code in editor
+ *
+ * Return: void
+ */
+void pop(stack_t **top, unsigned int line_number)
+{
+	stack_t *popped;
+
+	if (*top != NULL)
+	{
+		popped = *top;
+		if ((*top)->prev != NULL)
+		{
+			*top = (*top)->prev;
+			(*top)->next = NULL;
+			free(popped);
+		}
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		free(data.line_alloc), fclose(data.file);
+		exit(EXIT_FAILURE);
+	}
+}
