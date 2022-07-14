@@ -10,17 +10,20 @@
 void push(stack_t **top, unsigned int line_number)
 {
 	stack_t *new_node;
-	int push_data = atoi(data);
+	int push_data;
 
-	if (strcmp(data, "0") != 0 && push_data == 0)
+	if (is_number(data.operand) == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		free(data.line_alloc), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
+	push_data = atoi(data.operand);
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free(data.line_alloc), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 	new_node->n = push_data;

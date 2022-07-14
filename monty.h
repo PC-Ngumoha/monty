@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -41,7 +42,14 @@ typedef struct instruction_s
 } instruction_t;
 
 /* Extern Global Variable: data */
-extern char *data;
+typedef struct data_s
+{
+	char *operand;
+	FILE *file;
+	char *line_alloc;
+} data_t;
+
+extern data_t data;
 
 /* Helper Functions */
 char* _strdup(const char* s);
@@ -52,5 +60,6 @@ void free_stack(stack_t *top);
 void (*get_operations(const char *command))(stack_t **, unsigned int);
 void push(stack_t **top, unsigned int line_number);
 void print_all(stack_t **top, unsigned int line_number);
+void print_top(stack_t **top, unsigned int line_number);
 
 #endif /* MONTY_H_ */

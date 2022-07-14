@@ -1,6 +1,6 @@
 #include "monty.h"
 
-char *data;
+data_t data;
 
 /**
  * _strdup - duplicates a string in memory
@@ -29,12 +29,12 @@ int is_number(const char *str)
 {
 	int i = 0;
 
-	if (!str)
+	if (str == NULL)
 		return (0);
 
 	while (str[i] != '\0')
 	{
-		if (str[i] < 48 || str[i] > 57)
+		if (isdigit(str[i]) == 0)
 			return (0);
 		i++;
 	}
