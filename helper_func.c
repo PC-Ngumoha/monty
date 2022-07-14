@@ -73,6 +73,7 @@ unsigned int stack_length(stack_t *top)
 	stack_t *curr;
 	unsigned int length = 0;
 
+
 	curr = top;
 	if (curr == NULL)
 	{
