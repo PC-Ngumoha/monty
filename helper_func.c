@@ -50,7 +50,7 @@ int is_number(const char *str)
 void free_stack(stack_t *top)
 {
 	stack_t *curr;
-	
+
 	if (top != NULL)
 	{
 		while (top != NULL)
