@@ -11,6 +11,10 @@
 int main(int argc, char **argv)
 {
 	FILE *code_file;
+	size_t line_number = 1, length = 0;
+	char *command, *token, *line = NULL;
+	stack_t *prog_stack = NULL;
+	void (*operation)(stack_t **, unsigned int);
 
 	if (argc == 2)
 	{
@@ -20,13 +24,29 @@ int main(int argc, char **argv)
 			fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 			exit(EXIT_FAILURE);
 		}
+		while (getline(&line, &length, code_file) != -1)
+		{
+			line[strcspn(line, "\n")] = '\0';
+			command = strtok(line, " ");
+			token = strtok(NULL, " ");
+			if (token != NULL)
+				data = token;
+			operation = get_operations(command);
+			if (!operation)
+			{
+				fprintf(stderr, "L%lu: unknown instruction %s\n", line_number, command);
+				exit(EXIT_FAILURE);
+			}
+			operation(&prog_stack, line_number);
+			line_number++;
+		}
 	}
 	else
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	free_stack(prog_stack);
-	fclose(code_file);
+	free(line), line = NULL;
+	free_stack(prog_stack), fclose(code_file);
 	return (EXIT_SUCCESS);
 }

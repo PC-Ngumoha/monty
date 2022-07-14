@@ -9,11 +9,12 @@
  */
 void print_all(stack_t **top, unsigned int line_number)
 {
-	(void) line_number;
+	stack_t *curr = *top;
 
-	while (*top != NULL)
+	(void) line_number;
+	while (curr != NULL)
 	{
-		printf("%d\n", (*top)->n);
-		*top = (*top)->next;
+		printf("%d\n", curr->n);
+		curr = curr->prev;
 	}
 }

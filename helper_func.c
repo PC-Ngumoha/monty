@@ -51,10 +51,12 @@ void free_stack(stack_t *top)
 {
 	stack_t *curr;
 
+	if (top == NULL)
+		return;
 	while (top != NULL)
 	{
 		curr = top;
-		top = top->next;
+		top = top->prev;
 		free(curr);
 	}
 }
