@@ -55,11 +55,13 @@ extern data_t data;
 char* _strdup(const char* s);
 int is_number(const char *str);
 void free_stack(stack_t *top);
+unsigned int stack_length(stack_t *top);
 
 /* Function Prototypes */
 void (*get_operations(const char *command))(stack_t **, unsigned int);
 void push(stack_t **top, unsigned int line_number);
 void pop(stack_t **top, unsigned int line_number);
+void swap(stack_t **top, unsigned int line_number);
 void print_all(stack_t **top, unsigned int line_number);
 void print_top(stack_t **top, unsigned int line_number);
 

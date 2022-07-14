@@ -61,3 +61,30 @@ void free_stack(stack_t *top)
 		}
 	}
 }
+
+/**
+ * stack_length - returns the length of a stack
+ * @top: top of the stack
+ *
+ * Return: length of stack (integer)
+ */
+unsigned int stack_length(stack_t *top)
+{
+	stack_t *curr;
+	unsigned int length = 0;
+	
+	curr = top;
+	if (curr == NULL)
+	{
+		return (length);
+	}
+	else
+	{
+		while (curr != NULL)
+		{
+			curr = curr->prev;
+			length++;
+		}
+	}
+	return (length);
+}

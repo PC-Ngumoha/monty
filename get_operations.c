@@ -10,7 +10,7 @@ void (*get_operations(const char *command))(stack_t **, unsigned int)
 {
 	instruction_t instrs[] = {
 		{"push", push}, {"pall", print_all}, {"pint", print_top},
-		{"pop", pop}, {NULL, NULL}
+		{"pop", pop}, {"swap", swap}, {NULL, NULL}
 	};
 	int i = 0;
 
