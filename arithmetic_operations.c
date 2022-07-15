@@ -40,7 +40,7 @@ void add(stack_t **top, unsigned int line_number)
 
 
 /**
- * sub - subtracts the top element from the next element on the stack
+ * subtract - subtracts the top element from the next element on the stack
  * @top: top of the stack
  * @line_number: number of current line of code in editor
  *
@@ -79,7 +79,7 @@ void subtract(stack_t **top, unsigned int line_number)
 
 
 /**
- * div - divide the second element by the first element on the stack
+ * divide - divide the second element by the first element on the stack
  * @top: top of the stack
  * @line_number: number of current line of code in editor
  *
@@ -119,6 +119,45 @@ void divide(stack_t **top, unsigned int line_number)
 		popped->prev = NULL;
 		/* Performs the Division */
 		(*top)->n /= popped->n;
+		free(popped);
+	}
+}
+
+
+/**
+ * multiply - multiplies the second element by the first element on the stack
+ * @top: top of the stack
+ * @line_number: number of current line of code in editor
+ *
+ * Return: void
+ */
+void multiply(stack_t **top, unsigned int line_number)
+{
+	stack_t *popped;
+	unsigned int length;
+
+	length = stack_length(*top);
+	if (*top == NULL)
+	{
+		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
+		free(data.line_alloc), fclose(data.file);
+		exit(EXIT_FAILURE);
+	}
+	else if (length < 2)
+	{
+		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
+		free(data.line_alloc), fclose(data.file);
+		free_stack(*top);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		popped = *top;
+		*top = (*top)->prev;
+		(*top)->next = NULL;
+		popped->prev = NULL;
+		/* Performing The Subtraction */
+		(*top)->n *= popped->n;
 		free(popped);
 	}
 }
