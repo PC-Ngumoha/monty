@@ -46,7 +46,7 @@ typedef struct data_s
 {
 	char *operand;
 	FILE *file;
-	char *line_alloc;
+	char *line;
 } data_t;
 
 extern data_t data;
@@ -56,6 +56,9 @@ char* _strdup(const char* s);
 int is_number(const char *str);
 void free_stack(stack_t *top);
 unsigned int stack_length(stack_t *top);
+
+/* Program Execution Assistance */
+void handle_program(char *file_name);
 
 /* Function Prototypes */
 void (*get_operations(const char *command))(stack_t **, unsigned int);

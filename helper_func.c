@@ -1,6 +1,5 @@
 #include "monty.h"
 
-data_t data;
 
 /**
  * _strdup - duplicates a string in memory

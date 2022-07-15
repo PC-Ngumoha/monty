@@ -15,7 +15,7 @@ void push(stack_t **top, unsigned int line_number)
 	if (is_number(data.operand) == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 	push_data = atoi(data.operand);
@@ -23,7 +23,7 @@ void push(stack_t **top, unsigned int line_number)
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 	new_node->n = push_data;
@@ -67,7 +67,7 @@ void pop(stack_t **top, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -89,13 +89,13 @@ void swap(stack_t **top, unsigned int line_number)
 	if (*top == NULL)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 	else if (length < 2)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}

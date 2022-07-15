@@ -1,5 +1,6 @@
 #include "monty.h"
 
+data_t data = {NULL, NULL, NULL};
 
 /**
  * main - main entry point of the program
@@ -10,26 +11,40 @@
  */
 int main(int argc, char **argv)
 {
-	FILE *code_file;
+	if (argc == 2)
+	{
+		handle_program(argv[1]);
+	}
+	else
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
+/**
+ * handle_program - handles the execution of the program
+ * @file_name: name of code file to run
+ *
+ * Return: void
+ */
+void handle_program(char *file_name)
+{
 	size_t line_number = 1, length = 0;
-	char *command, *line = NULL;
+	char *command = NULL;
 	stack_t *prog_stack = NULL;
 	void (*operation)(stack_t **, unsigned int);
 
-	if (argc == 2)
+	data.file = fopen(file_name, "r");
+	if (data.file)
 	{
-		code_file = fopen(argv[1], "r");
-		if (!code_file)
+		while (getline(&data.line, &length, data.file) != -1)
 		{
-			fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-			exit(EXIT_FAILURE);
-		}
-		data.file = code_file; /* Making the file globally accessible across files*/
-		while (getline(&line, &length, code_file) != -1)
-		{
-			line[strcspn(line, "\n")] = '\0';
-			data.line_alloc = line; /* Making the current line globally accessible */
-			command = strtok(line, " ");
+			data.line[strcspn(data.line, "\n")] = '\0';
+			command = strtok(data.line, " ");
+			if (command == NULL)
+				continue;
 			if (strcmp(command, "#") == 0)
 				continue;
 			data.operand = strtok(NULL, " ");
@@ -37,17 +52,16 @@ int main(int argc, char **argv)
 			if (!operation)
 			{
 				fprintf(stderr, "L%lu: unknown instruction %s\n", line_number, command);
-				free(line), fclose(code_file), exit(EXIT_FAILURE);
+				free(data.line), fclose(data.file), exit(EXIT_FAILURE);
 			}
 			operation(&prog_stack, line_number);
 			line_number++;
 		}
+		free(data.line), free_stack(prog_stack), fclose(data.file);
 	}
 	else
 	{
-		fprintf(stderr, "USAGE: monty file\n");
+		fprintf(stderr, "Error: Can't open file %s\n", file_name);
 		exit(EXIT_FAILURE);
 	}
-	free(line), line = NULL, free_stack(prog_stack), fclose(code_file);
-	return (EXIT_SUCCESS);
 }

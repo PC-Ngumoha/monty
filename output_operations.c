@@ -38,7 +38,7 @@ void print_top(stack_t **top, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 }

@@ -16,13 +16,13 @@ void add(stack_t **top, unsigned int line_number)
 	if (*top == NULL)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 	else if (length < 2)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
@@ -55,13 +55,13 @@ void subtract(stack_t **top, unsigned int line_number)
 	if (*top == NULL)
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 	else if (length < 2)
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
@@ -94,20 +94,20 @@ void divide(stack_t **top, unsigned int line_number)
 	if (*top == NULL)
 	{
 		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 	else if (length < 2)
 	{
 		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
 	else if ((*top)->n == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
@@ -140,13 +140,13 @@ void multiply(stack_t **top, unsigned int line_number)
 	if (*top == NULL)
 	{
 		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 	else if (length < 2)
 	{
 		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
@@ -179,20 +179,20 @@ void modulus(stack_t **top, unsigned int line_number)
 	if (*top == NULL)
 	{
 		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		exit(EXIT_FAILURE);
 	}
 	else if (length < 2)
 	{
 		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
 	else if ((*top)->n == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_number);
-		free(data.line_alloc), fclose(data.file);
+		free(data.line), fclose(data.file);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
