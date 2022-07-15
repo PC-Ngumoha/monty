@@ -65,5 +65,6 @@ void swap(stack_t **top, unsigned int line_number);
 void print_all(stack_t **top, unsigned int line_number);
 void print_top(stack_t **top, unsigned int line_number);
 void add(stack_t **top, unsigned int line_number);
+void no_operation(stack_t **top, unsigned int line_number);
 
 #endif /* MONTY_H_ */
