@@ -161,3 +161,49 @@ void multiply(stack_t **top, unsigned int line_number)
 		free(popped);
 	}
 }
+
+
+/**
+ * modulus - gets the modulus of the top two elements of the stack
+ * @top: top of the stack
+ * @line_number: number of current line of code in editor
+ *
+ * Return: void
+ */
+void modulus(stack_t **top, unsigned int line_number)
+{
+	stack_t *popped;
+	unsigned int length;
+
+	length = stack_length(*top);
+	if (*top == NULL)
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+		free(data.line_alloc), fclose(data.file);
+		exit(EXIT_FAILURE);
+	}
+	else if (length < 2)
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+		free(data.line_alloc), fclose(data.file);
+		free_stack(*top);
+		exit(EXIT_FAILURE);
+	}
+	else if ((*top)->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		free(data.line_alloc), fclose(data.file);
+		free_stack(*top);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		popped = *top;
+		*top = (*top)->prev;
+		(*top)->next = NULL;
+		popped->prev = NULL;
+		/* Performs the Division */
+		(*top)->n %= popped->n;
+		free(popped);
+	}
+}
