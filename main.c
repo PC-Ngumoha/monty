@@ -30,6 +30,8 @@ int main(int argc, char **argv)
 			line[strcspn(line, "\n")] = '\0';
 			data.line_alloc = line; /* Making the current line globally accessible */
 			command = strtok(line, " ");
+			if (strcmp(command, "#") == 0)
+				continue;
 			data.operand = strtok(NULL, " ");
 			operation = get_operations(command);
 			if (!operation)
@@ -46,7 +48,6 @@ int main(int argc, char **argv)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	free(line), line = NULL;
-	free_stack(prog_stack), fclose(code_file);
+	free(line), line = NULL, free_stack(prog_stack), fclose(code_file);
 	return (EXIT_SUCCESS);
 }
