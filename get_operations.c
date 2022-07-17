@@ -13,7 +13,7 @@ void (*get_operations(const char *command))(stack_t **, unsigned int)
 		{"pop", pop}, {"swap", swap}, {"add", add},
 		{"nop", no_operation}, {"sub", subtract}, {"div", divide},
 		{"mul", multiply}, {"mod", modulus}, {"pchar", print_char},
-		{NULL, NULL}
+		{"pstr", print_string}, {NULL, NULL}
 	};
 	int i = 0;
 

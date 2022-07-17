@@ -76,3 +76,35 @@ void print_char(stack_t **top, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
+
+
+/**
+ * print_string - prints a string from all the characters on the stack
+ * @top: top of the stack
+ * @line_number: number of current code line in editor
+ *
+ * Return: void
+ */
+void print_string(stack_t **top, unsigned int line_number)
+{
+	stack_t *curr;
+
+	(void) line_number;
+	if (*top != NULL)
+	{
+		curr = *top;
+		while (curr != NULL && curr->n != 0)
+		{
+			if ((curr->n >= 65 && curr->n <= 90) ||
+					(curr->n >= 97 && curr->n <= 122))
+			{
+				printf("%c", curr->n);
+			}
+			else
+				break;
+			curr = curr->prev;
+		}
+	}
+	printf("\n");
+}
+
